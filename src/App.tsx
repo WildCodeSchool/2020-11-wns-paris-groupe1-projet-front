@@ -5,17 +5,17 @@ import UploadLayout from "./components/upload/UploadLayout"
 import { ApolloProvider } from "@apollo/client"
 
 // const useStyles = makeStyles((theme: Theme) =>
-// createStyles({
-// root: {
-// flexGrow: 1,
-// },
-// menuButton: {
-// marginRight: theme.spacing(2),
-// },
-// title: {
-// flexGrow: 1,
-// },
-// })
+//   createStyles({
+//     root: {
+//       flexGrow: 1,
+//     },
+//     menuButton: {
+//       marginRight: theme.spacing(2),
+//     },
+//     title: {
+//       flexGrow: 1,
+//     },
+//   })
 // )
 
 export default function ButtonAppBar() {
@@ -23,7 +23,9 @@ export default function ButtonAppBar() {
 
   return (
     <ApolloProvider client={client}>
-      <UploadLayout />
+      <div className="App-header" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <UploadLayout />
+      </div>
     </ApolloProvider>
   )
 }

@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles"
-import { Button, Input } from "@material-ui/core"
-// import { useMutation } from "@apollo/client"
-// import ADD_FILE from "../../services/mutation/lessonMutation"
+import { Button, TextField } from "@material-ui/core"
+import { useMutation } from "@apollo/client"
+import ADD_FILE from "../../services/mutation/lessonMutation"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,22 +16,54 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function UploadForm() {
   const classes = useStyles()
-  // const [addFile] = useMutation(ADD_FILE, { variables: { file: { title: String, description: String, category: String, url: String } } })
+  const [addFile] = useMutation(ADD_FILE)
   const [showForm, setShowForm] = useState(false)
+  const [data, setData] = useState({
+    title: "",
+    description: "",
+    category: "",
+    url: "",
+  })
+
+  const handleChange = (e: any) => {
+    console.log(e.target.name)
+    setData({ ...data, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async () => {
+    try {
+      const response = await addFile({
+        variables: {
+          file: {
+            title: data.title,
+            description: data.description,
+            category: data.category,
+            url: data.url,
+          },
+        },
+      })
+      console.log(response)
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   return (
-    <>
-      <Button variant="contained" color="primary" disableElevation onClick={() => setShowForm(!showForm)}>
-        {showForm ? "Fermer le formulaire" : "Ajouter un cours"}
+    <div style={{ margin: "20px" }}>
+      <Button variant="contained" color="primary" onClick={() => setShowForm(!showForm)}>
+        {showForm ? "Annuler" : "Ajouter un cours"}
       </Button>
       {showForm && (
         <form className={classes.root} noValidate autoComplete="off">
-          <Input defaultValue="Nom du fichier" inputProps={{ "aria-label": "description" }} />
-          <Input defaultValue="URL" inputProps={{ "aria-label": "description" }} />
-          <Input placeholder="Catégorie" inputProps={{ "aria-label": "description" }} />
-          <Input defaultValue="Description" inputProps={{ "aria-label": "description" }} />
+          <TextField value={data.title} onChange={handleChange} name="title" placeholder="Nom du fichier" inputProps={{ "aria-label": "description" }} />
+          <TextField value={data.description} onChange={handleChange} name="description" placeholder="Description" inputProps={{ "aria-label": "description" }} />
+          <TextField value={data.category} onChange={handleChange} name="category" placeholder="Catégorie" inputProps={{ "aria-label": "description" }} />
+          <TextField value={data.url} onChange={handleChange} name="url" placeholder="url" inputProps={{ "aria-label": "description" }} />
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
+            Valider
+          </Button>
         </form>
       )}
-    </>
+    </div>
   )
 }
