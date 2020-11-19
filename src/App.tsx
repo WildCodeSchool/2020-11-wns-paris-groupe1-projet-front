@@ -1,7 +1,7 @@
 import React from "react"
 // import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
-import client from "../src/services/index2"
-import UploadLayout from "./components/upload/UploadLayout"
+import api from "./apollo/api"
+import Course from "./pages/course"
 import { ApolloProvider } from "@apollo/client"
 
 // const useStyles = makeStyles((theme: Theme) =>
@@ -22,9 +22,9 @@ export default function ButtonAppBar() {
   // const classes = useStyles()
 
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={api}>
       <div className="App-header" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <UploadLayout />
+        <Course />
       </div>
     </ApolloProvider>
   )

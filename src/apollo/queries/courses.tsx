@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-const LESSONS = gql`
+const COURSES = gql`
   {
     files {
       title
@@ -12,4 +12,4 @@ const LESSONS = gql`
   }
 `;
 
-export default LESSONS
+export default COURSES

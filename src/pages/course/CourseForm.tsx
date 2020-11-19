@@ -1,8 +1,10 @@
 import React, { useState } from "react"
+import { useMutation } from "@apollo/client"
+
+import ADD_FILE from "../../apollo/mutations/courseMutation"
+
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles"
 import { Button, TextField } from "@material-ui/core"
-import { useMutation } from "@apollo/client"
-import ADD_FILE from "../../services/mutation/lessonMutation"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -14,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-export default function UploadForm() {
+export default function CourseForm() {
   const classes = useStyles()
   const [addFile] = useMutation(ADD_FILE)
   const [showForm, setShowForm] = useState(false)
