@@ -1,7 +1,7 @@
 import React from "react"
 // import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 
-import Upload from  "../src/components/Upload"
+import Upload from  "./components/upload/Upload"
 
 // const useStyles = makeStyles((theme: Theme) =>
   // createStyles({
