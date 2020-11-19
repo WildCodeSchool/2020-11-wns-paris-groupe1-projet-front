@@ -1,46 +1,41 @@
+// Modules
 import React from 'react';
 import clsx from 'clsx';
+import LESSONS from '../../schemas/lessonSchema'
+import { useQuery } from "@apollo/client";
+
+
+// MUI Style
 import { createStyles, lighten, makeStyles, Theme } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+
+// MUI Components
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  TableSortLabel,
+  Toolbar,
+  Typography,
+  Paper,
+  IconButton,
+  Tooltip,
+ } from '@material-ui/core';
+
+// MUI Icons
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
 interface Data {
   category: string;
-  date: string;
-  name: string;
+  datetime: string;
+  title: string;
+  description: string
+  url: string
 }
-
-function createData(
-  name: string,
-  category: string,
-  date: string,
-): Data {
-  return { name, category, date };
-}
-
-const rows = [
-  createData('js.pdf', 'Javascript', '11-10-2020'),
-  createData('node.pdf', 'Node', '11-10-2020'),
-  createData('react.pdf', 'React', '11-10-2020'),
-  createData('typescript.pdf', 'Typescript', '11-10-2020'),
-  createData('fonctions.pdf', 'Javascript', '11-10-2020'),
-  createData('mongo.pdf', 'Base de donnée', '11-10-2020'),
-];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -81,9 +76,11 @@ interface HeadCell {
 }
 
 const headCells: HeadCell[] = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Nom du fichier)' },
+  { id: 'title', numeric: false, disablePadding: true, label: 'Fichier' },
   { id: 'category', numeric: true, disablePadding: false, label: 'Catégorie' },
-  { id: 'date', numeric: true, disablePadding: false, label: 'Date' },
+  { id: 'description', numeric: true, disablePadding: false, label: 'Description' },
+  { id: 'url', numeric: true, disablePadding: false, label: 'Lien' },
+  { id: 'datetime', numeric: true, disablePadding: false, label: 'Date' },
 ];
 
 interface EnhancedTableProps {
@@ -219,14 +216,20 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function Upload() {
+export default function UploadTable() {
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('category');
   const [selected, setSelected] = React.useState<string[]>([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const { loading, error, data } = useQuery(LESSONS);
+
+  if (loading) return '...'
+  if(error) return error
+
+  const rows = data.files
+console.log(rows)
 
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -236,19 +239,19 @@ export default function Upload() {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
+      const newSelecteds = rows.map((n: any) => n.title);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event: React.MouseEvent<unknown>, title: string) => {
+    const selectedIndex = selected.indexOf(title);
     let newSelected: string[] = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, title);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -272,11 +275,7 @@ export default function Upload() {
     setPage(0);
   };
 
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
-
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  const isSelected = (title: string) => selected.indexOf(title) !== -1;
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
@@ -288,7 +287,7 @@ export default function Upload() {
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
+            size='small'
             aria-label="enhanced table"
           >
             <EnhancedTableHead
@@ -304,20 +303,20 @@ export default function Upload() {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.title);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.title)}
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row._id}
                       selected={isItemSelected}
                     >
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.name}
+                        {row.title}
                       </TableCell>
                       <TableCell align="right">{row.category}</TableCell>
                       <TableCell align="right">{row.date}</TableCell>
@@ -325,7 +324,7 @@ export default function Upload() {
                   );
                 })}
               {emptyRows > 0 && (
-                <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
+                <TableRow style={{ height: 33 * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
               )}
@@ -342,10 +341,6 @@ export default function Upload() {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
     </div>
   );
 }

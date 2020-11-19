@@ -1,7 +1,8 @@
 import React from "react";
 // import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
-
-import FormPage from "../src/components/upload/FormPage";
+import client from '../src/services/index2'
+import UploadLayout from "./components/upload/UploadLayout";
+import { ApolloProvider } from "@apollo/client";
 
 // const useStyles = makeStyles((theme: Theme) =>
 // createStyles({
@@ -21,8 +22,8 @@ export default function ButtonAppBar() {
   // const classes = useStyles()
 
   return (
-    <div>
-      <FormPage />
-    </div>
+    <ApolloProvider client={client}>
+      <UploadLayout />
+    </ApolloProvider>
   );
 }

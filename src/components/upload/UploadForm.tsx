@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import { Button, Input } from "@material-ui/core";
+import { useMutation } from "@apollo/client";
+import ADD_FILE from '../../services/mutation/lessonMutation'
+
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      "& > *": {
-        margin: theme.spacing(1),
-      },
+createStyles({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
     },
-  })
+  },
+})
 );
 
-export default function Form() {
+export default function UploadForm() {
   const classes = useStyles();
+  const [addFile] = useMutation(ADD_FILE, {variables: {file: { title: String, description: String, category: String, url: String}}})
   const [showForm, setShowForm] = useState(false);
 
   return (
