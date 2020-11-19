@@ -1,15 +1,13 @@
-import React from "react";
-import Container from "@material-ui/core/Container";
-import UploadForm from "./UploadForm";
-import UploadTable from "./UploadTable";
+import React from "react"
+import Container from "@material-ui/core/Container"
+import UploadForm from "./UploadForm"
+import BasicTable from "../Table/BasicTable"
 
-
-
-export default function UploadLayout() {
+export default function UploadLayout(): JSX.Element {
   return (
     <Container maxWidth="lg">
       <UploadForm />
-      <UploadTable />
+      <BasicTable />
     </Container>
-  );
+  )
 }
