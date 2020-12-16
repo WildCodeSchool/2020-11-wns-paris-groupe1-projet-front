@@ -1,8 +1,12 @@
 import React from "react"
 // import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import api from "./apollo/api"
-import Course from "./pages/course"
+// import Course from "./pages/course"
+import {  Switch, Route } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client"
+
+import SignIn from "./pages/connection/SignIn"
+import SignUp from "./pages/connection/SignUp"
 
 // const useStyles = makeStyles((theme: Theme) =>
 //   createStyles({
@@ -24,7 +28,10 @@ export default function ButtonAppBar() {
   return (
     <ApolloProvider client={api}>
       <div className="App-header" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <Course />
+        <Switch >
+          <Route exact path ="/sign-in" component={SignIn} />
+          <Route  path="/sign-up" component={SignUp} />
+        </Switch>
       </div>
     </ApolloProvider>
   )
