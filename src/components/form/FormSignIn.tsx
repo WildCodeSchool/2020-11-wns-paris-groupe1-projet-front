@@ -42,17 +42,20 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(7, 0, 5),
     backgroundColor: '#E1755E',
     color: '#fff'
   },
+  link: {
+    color: '#4E8591',
+}
 }));
 
 export default function SignIn() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="sm">
       <CssBaseline />
       <div className={classes.paper}>
         {/* <Avatar className={classes.avatar}>
@@ -98,13 +101,13 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="#" variant="body2" className={classes.link}>
                 Mot de passe oublié ?
               </Link>
             </Grid>
             <Grid item>
-              <Link to='/sign-up' variant="body2">
-                {"Si tu n'as pas encore de compte, créer toi en un !"}
+              <Link to='/sign-up' variant="body2" className={classes.link}>
+                {"Si tu n'as pas encore de compte, crée-toi en un !"}
               </Link>
             </Grid>
           </Grid>

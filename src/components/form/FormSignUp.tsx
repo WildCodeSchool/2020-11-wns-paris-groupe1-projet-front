@@ -1,17 +1,13 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Link } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -34,31 +30,37 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     backgroundColor: '#fff',
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
+//   avatar: {
+//     margin: theme.spacing(1),
+//     backgroundColor: theme.palette.secondary.main,
+//   },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
+  sm: {
+    width: '70%',
+  },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(7, 0, 5),
     backgroundColor: '#E1755E',
     color: '#fff'
   },
+  link: {
+      color: '#4E8591',
+  }
 }));
 
 export default function FormSignUp() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="md" classes={{maxWidthMd: classes.sm}}>
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+        {/* <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
-        </Avatar>
+        </Avatar> */}
         <Typography component="h1" variant="h5">
           Crée-toi un compte
         </Typography>
@@ -93,29 +95,35 @@ export default function FormSignUp() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="Adresse email"
                 name="email"
                 autoComplete="email"
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Mot de passe"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
+            <Grid item xs={12} sm={6}>
+                <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Mot de passe"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                  />
             </Grid>
-            {/* <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid> */}
+            <Grid item xs={12} sm={6}>
+                <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="confimrPassword"
+                    label="Confirme ton mot de passe"
+                    type="password"
+                    id="confirmPassword"
+                    autoComplete="current-password"
+                />
+            </Grid>
           </Grid>
           <Button
             type="submit"
@@ -125,9 +133,9 @@ export default function FormSignUp() {
           >
             Créer
           </Button>
-          <Grid container justify="flex-end">
+          <Grid container justify="center">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link to='/sign-in' variant="body2" className={classes.link}>
                 Déjà un compte? Connecte-toi
               </Link>
             </Grid>
