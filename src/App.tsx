@@ -1,8 +1,9 @@
-import React from "react"
+import React from "react";
 // import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
-import api from "./apollo/api"
-import Course from "./pages/course"
-import { ApolloProvider } from "@apollo/client"
+import api from "./apollo/api";
+import Course from "./pages/course";
+import { ApolloProvider } from "@apollo/client";
+import SideBar from "./components/SideBar";
 
 // const useStyles = makeStyles((theme: Theme) =>
 //   createStyles({
@@ -23,9 +24,17 @@ export default function ButtonAppBar() {
 
   return (
     <ApolloProvider client={api}>
-      <div className="App-header" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <SideBar></SideBar>
+      <div
+        className="App-header"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
         <Course />
       </div>
     </ApolloProvider>
-  )
+  );
 }
