@@ -1,11 +1,8 @@
 
 import { createMuiTheme } from "@material-ui/core/styles";
-import green from "@material-ui/core/colors/green";
 import purple from "@material-ui/core/colors/purple";
+import { blueGrey, deepOrange, green } from "@material-ui/core/colors";
 
-const primaryGreen = green[500];
-const accentGreen = green.A200;
-const darkGreen = green[900];
 const primaryPurple = purple[500];
 const accentPurple = purple.A200;
 const darkPurple = purple[900];
@@ -14,16 +11,23 @@ export const overridings = {
   name: 'Light Theme',
   palette: {
     primary: {
-      light: accentGreen,
-      main: primaryGreen,
-      dark: darkGreen,
-      contrastText: "#fff"
+      light: blueGrey[500],
+      main: '#2D4C64',
+      dark: blueGrey[900],
     },
     secondary: {
-      light: accentPurple,
-      main: primaryPurple,
-      dark: darkPurple,
-      contrastText: "#fff"
+      light: deepOrange[200],
+      main: '#E1755E',
+    },
+    error: {
+      main: '#B6342F'
+    },
+    success: {
+      light: '#A2CDB8',
+      main: green[800],
+    },
+    text: {
+      main: '#F9FBFC',
     }
   }
 };
