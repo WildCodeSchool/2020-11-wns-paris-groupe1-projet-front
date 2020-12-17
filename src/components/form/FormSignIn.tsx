@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useMutation } from "@apollo/client"
+import { useHistory } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -10,6 +12,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
+
+import { LOGIN_MUTATION } from "../../apollo/mutations/login";
+import { AUTH_TOKEN } from '../../constant'; 
 
 function Copyright() {
   return (
@@ -26,17 +31,12 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    // marginTop: theme.spacing(20),
     padding: 50,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: '#fff',
   },
-//   avatar: {
-//     margin: theme.spacing(1),
-//     backgroundColor: theme.palette.secondary.main,
-//   },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
@@ -51,20 +51,58 @@ const useStyles = makeStyles((theme) => ({
 }
 }));
 
+// interface Data {
+//   login: { email: string, password: string }
+// }
+
 export default function SignIn() {
+  const history = useHistory();
   const classes = useStyles();
+  const [state, setState] = useState({
+    email: "",
+    password: ""
+  });
+  const authToken = localStorage.getItem(AUTH_TOKEN);
+  console.log(authToken);
+  
+  const [login] = useMutation(LOGIN_MUTATION, {
+    variables: {
+      email: state.email,
+      password: state.password
+    },
+    onCompleted: ({ login }) => {
+      localStorage.setItem(AUTH_TOKEN, login.token);
+      history.push('/');
+    }
+  });
+
+
+  const handleInputChange = ({ target: { name, value } }: any): void => {
+    setState({ ...state, [name]: value });
+  };
+
+  const handleSubmit = async(e: any) => {
+    e.preventDefault()
+    try {
+      // await graphql request (post email and password)
+      
+      history.push('/dashboard')
+    } catch(err) {
+      // diplays error message 
+      console.log(err);
+      
+      history.push("/sign-in")
+    }
+  }
 
   return (
     <Container component="main" maxWidth="sm">
       <CssBaseline />
       <div className={classes.paper}>
-        {/* <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar> */}
         <Typography component="h1" variant="h5">
           Connecte toi
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -73,8 +111,10 @@ export default function SignIn() {
             id="email"
             label="Adresse email"
             name="email"
+            value= {state.email}
             autoComplete="email"
             autoFocus
+            onChange={handleInputChange}
           />
           <TextField
             variant="outlined"
@@ -85,7 +125,9 @@ export default function SignIn() {
             label="Mot de passe"
             type="password"
             id="password"
+            value= {state.password}
             autoComplete="current-password"
+            onChange={handleInputChange}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

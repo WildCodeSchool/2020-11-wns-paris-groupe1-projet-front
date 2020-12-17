@@ -9,8 +9,8 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 
 import ProtectedRoute from './components/protected-route/ProtectedRoute'
-import SignIn from "./pages/connection/SignIn"
-import SignUp from "./pages/connection/SignUp"
+import SignIn from "./pages/sign-in/SignIn"
+import SignUp from "./pages/sign-up/SignUp"
 
 import LightTheme from '../src/themes/light-theme';
 import CourseForm from "./pages/course/CourseForm";

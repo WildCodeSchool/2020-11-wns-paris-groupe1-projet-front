@@ -1,7 +1,7 @@
 import React from 'react';
 import FormSignUp from '../../components/form/FormSignUp';
 
-import './signIn.css'
+import '../sign-in/signIn.css'
 
 export default function SignIn() {
   return(
