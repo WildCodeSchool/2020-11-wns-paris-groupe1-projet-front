@@ -10,6 +10,9 @@ import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+import { SIGN_UP } from "./../../apollo/mutations/sign-up";
+import { useMutation } from "@apollo/client";
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -20,7 +23,7 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles<any>(theme => ({
   paper: {
     padding: 50,
     display: "flex",
@@ -61,6 +64,8 @@ interface ISignUpState {
 export default function FormSignUp(): JSX.Element {
   const classes = useStyles();
 
+  const [signUp] = useMutation(SIGN_UP);
+
   //const [firstName, setFirstName] = useState("");
   const [state, setState] = useState<ISignUpState>({
     firstName: "",
@@ -70,6 +75,25 @@ export default function FormSignUp(): JSX.Element {
     password: "",
     confirmPassword: ""
   });
+
+  const handleSubmit = async () => {
+    try {
+      const response = await signUp({
+        variables: {
+          input: {
+            firstname: state.firstName,
+            lastname: state.lastName,
+            birthday: state.birthday,
+            email: state.email,
+            password: state.password
+          }
+        }
+      });
+      console.log(response);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   const handleInputChange = ({ target: { name, value } }) => {
     setState({ ...state, [name]: value });
@@ -168,9 +192,9 @@ export default function FormSignUp(): JSX.Element {
             </Grid>
           </Grid>
           <Button
-            onClick={e => {
+            onClick={async e => {
               e.preventDefault();
-              console.log({ state });
+              handleSubmit();
             }}
             type="submit"
             fullWidth
