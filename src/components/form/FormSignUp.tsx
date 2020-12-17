@@ -1,61 +1,86 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { Link } from 'react-router-dom';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link to="#">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+      {"Copyright © "}
+      <Link to="#">Your Website</Link> {new Date().getFullYear()}
+      {"."}
     </Typography>
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   paper: {
     padding: 50,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: '#fff',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "#fff"
   },
-//   avatar: {
-//     margin: theme.spacing(1),
-//     backgroundColor: theme.palette.secondary.main,
-//   },
+  //   avatar: {
+  //     margin: theme.spacing(1),
+  //     backgroundColor: theme.palette.secondary.main,
+  //   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(3)
   },
   sm: {
-    width: '70%',
+    width: "70%"
   },
   submit: {
     margin: theme.spacing(7, 0, 5),
-    backgroundColor: '#E1755E',
-    color: '#fff'
+    backgroundColor: "#E1755E",
+    color: "#fff"
   },
   link: {
-      color: '#4E8591',
+    color: "#4E8591"
   }
 }));
 
-export default function FormSignUp() {
+interface ISignUpState {
+  firstName: string;
+  lastName: string;
+  birthday: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export default function FormSignUp(): JSX.Element {
   const classes = useStyles();
 
+  //const [firstName, setFirstName] = useState("");
+  const [state, setState] = useState<ISignUpState>({
+    firstName: "",
+    lastName: "",
+    birthday: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
+
+  const handleInputChange = ({ target: { name, value } }) => {
+    setState({ ...state, [name]: value });
+  };
+
   return (
-    <Container component="main" maxWidth="md" classes={{maxWidthMd: classes.sm}}>
+    <Container
+      component="main"
+      maxWidth="md"
+      classes={{ maxWidthMd: classes.sm }}
+    >
       <CssBaseline />
       <div className={classes.paper}>
         {/* <Avatar className={classes.avatar}>
@@ -68,6 +93,7 @@ export default function FormSignUp() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+                onChange={handleInputChange}
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -80,6 +106,7 @@ export default function FormSignUp() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                onChange={handleInputChange}
                 variant="outlined"
                 required
                 fullWidth
@@ -90,18 +117,20 @@ export default function FormSignUp() {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-                <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="birthday"
-                    // label="JJ/MM/AAAA"
-                    type="date"
-                    id="birthday"
-                  />
+              <TextField
+                onChange={handleInputChange}
+                variant="outlined"
+                required
+                fullWidth
+                name="birthday"
+                // label="JJ/MM/AAAA"
+                type="date"
+                id="birthday"
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                onChange={handleInputChange}
                 variant="outlined"
                 required
                 fullWidth
@@ -112,31 +141,37 @@ export default function FormSignUp() {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-                <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Mot de passe"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                  />
+              <TextField
+                onChange={handleInputChange}
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Mot de passe"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
-                <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="confimrPassword"
-                    label="Confirme ton mot de passe"
-                    type="password"
-                    id="confirmPassword"
-                    autoComplete="current-password"
-                />
+              <TextField
+                onChange={handleInputChange}
+                variant="outlined"
+                required
+                fullWidth
+                name="confirmPassword"
+                label="Confirme ton mot de passe"
+                type="password"
+                id="confirmPassword"
+                autoComplete="current-password"
+              />
             </Grid>
           </Grid>
           <Button
+            onClick={e => {
+              e.preventDefault();
+              console.log({ state });
+            }}
             type="submit"
             fullWidth
             variant="contained"
@@ -146,7 +181,7 @@ export default function FormSignUp() {
           </Button>
           <Grid container justify="center">
             <Grid item>
-              <Link to='/sign-in' className={classes.link}>
+              <Link to="/sign-in" className={classes.link}>
                 Déjà un compte? Connecte-toi
               </Link>
             </Grid>
