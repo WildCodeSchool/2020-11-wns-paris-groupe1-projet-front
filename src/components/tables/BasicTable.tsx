@@ -45,7 +45,7 @@ export default function BasicTable(): JSX.Element {
   if (error) return <p>Erreur</p>
   const rows = data?.files
 
-  const timeStampToISOString = (timestamp) => {
+  const timeStampToISOString = (timestamp: any) => {
     const data = new Date(parseFloat(timestamp))
     const day = data.getDate()
     const month = data.getMonth() + 1
