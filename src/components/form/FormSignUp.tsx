@@ -49,10 +49,20 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function FormSignUp() {
+interface ISignUpState {
+  firstName: string;
+  lastName: string;
+  birthday: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export default function FormSignUp(): JSX.Element {
   const classes = useStyles();
 
-  const [state, setState] = useState({
+  //const [firstName, setFirstName] = useState("");
+  const [state, setState] = useState<ISignUpState>({
     firstName: "",
     lastName: "",
     birthday: "",
@@ -61,11 +71,10 @@ export default function FormSignUp() {
     confirmPassword: ""
   });
 
-  const handleInputChange = ({ name, value }) => {
-    setState({
-      [name]: value
-    });
+  const handleInputChange = ({ target: { name, value } }) => {
+    setState({ ...state, [name]: value });
   };
+
   return (
     <Container
       component="main"
@@ -159,6 +168,10 @@ export default function FormSignUp() {
             </Grid>
           </Grid>
           <Button
+            onClick={e => {
+              e.preventDefault();
+              console.log({ state });
+            }}
             type="submit"
             fullWidth
             variant="contained"
