@@ -9,6 +9,7 @@ import { ThemeProvider as StyledThemeProvider } from "styled-components";
 
 import SignIn from "./pages/connection/SignIn"
 import SignUp from "./pages/connection/SignUp"
+import SideBar from "./components/layouts/SideBar";
 
 import LightTheme from '../src/themes/light-theme';
 
@@ -20,6 +21,9 @@ export default function App() {
       <StyledThemeProvider theme={LightTheme}>
         <MuiThemeProvider theme={LightTheme}>
           <div className="App-header" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <SideBar>
+            coucou
+          </SideBar>
             <BrowserRouter>
               <Switch >
                 <Route exact path ="/sign-in" component={SignIn} />
@@ -30,5 +34,5 @@ export default function App() {
         </MuiThemeProvider>
       </StyledThemeProvider>
     </ApolloProvider>
-  )
+  );
 }
