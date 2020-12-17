@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useMutation } from "@apollo/client"
+import { LoginContext } from '../../context/login'
 
 import ADD_FILE from "../../apollo/mutations/add-file"
 
@@ -17,6 +18,8 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 export default function CourseForm() {
+  // const isLoggedIn = React.useContext(LoginContext) // A mettre dans chaque composant qui devra être protégé
+  
   const classes = useStyles()
   const [addFile] = useMutation(ADD_FILE)
   const [showForm, setShowForm] = useState(false)
