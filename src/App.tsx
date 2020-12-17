@@ -1,5 +1,5 @@
 import React from "react"
-import api from "./apollo/api"
+import api from "./apollo"
 import {  Switch, Route, BrowserRouter } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client"
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { useMutation } from "@apollo/client"
 
-import ADD_FILE from "../../apollo/mutations/courseMutation"
+import ADD_FILE from "../../apollo/mutations/add-file"
 
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles"
 import { Button, TextField } from "@material-ui/core"

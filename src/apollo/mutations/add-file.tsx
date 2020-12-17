@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client"
 
 const ADD_FILE = gql`
-  mutation AddFiles($file: InputFile) {
+  mutation AddFile($file: InputFile) {
     addFile(file: $file) {
       title
       description
