@@ -89,7 +89,18 @@ export default function FormSignUp() {
                 autoComplete="lname"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
+                <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="birthday"
+                    // label="JJ/MM/AAAA"
+                    type="date"
+                    id="birthday"
+                  />
+            </Grid>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
