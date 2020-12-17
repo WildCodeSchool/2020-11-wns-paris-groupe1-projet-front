@@ -1,6 +1,6 @@
 import React from "react"
 import api from "./apollo/api"
-import {  Switch, Route } from "react-router-dom";
+import {  Switch, Route, BrowserRouter } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client"
 
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,7 +12,7 @@ import SignUp from "./pages/connection/SignUp"
 
 import LightTheme from '../src/themes/light-theme';
 
-export default function ButtonAppBar() {
+export default function App() {
 
   return (
     <ApolloProvider client={api}>
@@ -20,10 +20,12 @@ export default function ButtonAppBar() {
       <StyledThemeProvider theme={LightTheme}>
         <MuiThemeProvider theme={LightTheme}>
           <div className="App-header" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <Switch >
-            <Route exact path ="/sign-in" component={SignIn} />
-            <Route  path="/sign-up" component={SignUp} />
-          </Switch>
+            <BrowserRouter>
+              <Switch >
+                <Route exact path ="/sign-in" component={SignIn} />
+                <Route  exact path="/sign-up" component={SignUp} />
+              </Switch>
+            </BrowserRouter>
           </div>
         </MuiThemeProvider>
       </StyledThemeProvider>
