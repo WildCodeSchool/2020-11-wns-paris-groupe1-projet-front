@@ -1,43 +1,34 @@
 import React from "react"
-// import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import api from "./apollo/api"
-// import Course from "./pages/course"
-import {  Link, Switch, Route } from "react-router-dom";
+import {  Switch, Route, BrowserRouter } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client"
 
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
+
 import SignIn from "./pages/connection/SignIn"
+import SignUp from "./pages/connection/SignUp"
 
-// const useStyles = makeStyles((theme: Theme) =>
-//   createStyles({
-//     root: {
-//       flexGrow: 1,
-//     },
-//     menuButton: {
-//       marginRight: theme.spacing(2),
-//     },
-//     title: {
-//       flexGrow: 1,
-//     },
-//   })
-// )
+import LightTheme from '../src/themes/light-theme';
 
-export default function ButtonAppBar() {
-  // const classes = useStyles()
+export default function App() {
 
   return (
     <ApolloProvider client={api}>
-      <div className="App-header" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <button>
-          <Link to='/sign-in'>Connexion</Link>
-          </button>
-        <button>
-          <Link to='/sign-up'>Créer un compte</Link>
-        </button>
-
-        <Switch >
-          {/* <Route exact path ="/sign-in" component={SignIn} /> */}
-        </Switch>
-      </div>
+    <CssBaseline />
+      <StyledThemeProvider theme={LightTheme}>
+        <MuiThemeProvider theme={LightTheme}>
+          <div className="App-header" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <BrowserRouter>
+              <Switch >
+                <Route exact path ="/sign-in" component={SignIn} />
+                <Route  exact path="/sign-up" component={SignUp} />
+              </Switch>
+            </BrowserRouter>
+          </div>
+        </MuiThemeProvider>
+      </StyledThemeProvider>
     </ApolloProvider>
   )
 }

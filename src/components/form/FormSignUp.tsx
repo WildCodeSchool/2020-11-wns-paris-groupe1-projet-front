@@ -13,7 +13,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link to="#">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -146,7 +146,7 @@ export default function FormSignUp() {
           </Button>
           <Grid container justify="center">
             <Grid item>
-              <Link to='/sign-in' variant="body2" className={classes.link}>
+              <Link to='/sign-in' className={classes.link}>
                 Déjà un compte? Connecte-toi
               </Link>
             </Grid>
