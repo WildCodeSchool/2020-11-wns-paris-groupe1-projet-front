@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -11,6 +11,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useLazyQuery } from "@apollo/client";
+import { LOGIN } from "../../apollo/queries/login";
 import { ThemeConsumer } from "styled-components";
 
 function Copyright() {
@@ -58,10 +60,27 @@ export default function SignIn() {
     password: ""
   });
 
+  const [login, { data, loading, error }] = useLazyQuery(LOGIN);
+
   const handleInputChange = ({ target: { name, value } }) => {
     setState({ ...state, [name]: value });
   };
 
+  const handleSubmit = async () => {
+    try {
+      const response = await login({
+        variables: {
+          email: state.email,
+          password: state.password
+        }
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   return (
     <Container component="main" maxWidth="sm">
       <CssBaseline />
@@ -102,9 +121,9 @@ export default function SignIn() {
             label="Se souvenir de moi"
           />
           <Button
-            onClick={e => {
+            onClick={async e => {
               e.preventDefault();
-              console.log({ state });
+              handleSubmit();
             }}
             type="submit"
             fullWidth
