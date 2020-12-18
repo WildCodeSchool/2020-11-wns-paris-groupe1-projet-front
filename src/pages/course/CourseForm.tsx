@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { useMutation } from "@apollo/client"
-import { LoginContext } from '../../context/login'
 
 import ADD_FILE from "../../apollo/mutations/add-file"
 

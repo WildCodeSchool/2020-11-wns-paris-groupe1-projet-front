@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { LOGIN } from "../../apollo/queries/login";
-import { ThemeConsumer } from "styled-components";
 
 function Copyright() {
   return (
