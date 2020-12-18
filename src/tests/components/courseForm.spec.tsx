@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import CourseForm from '../../pages/course/CourseForm'
 
 
-describe('courseForm', () => {
+describe.skip('courseForm', () => {
     // it('renders button to show form', () => {
     //     render(<CourseForm />);
     //     expect(screen.getByRole('button')).toHaveTextContent(

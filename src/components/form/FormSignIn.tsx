@@ -9,7 +9,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { Link } from "react-router-dom";
+import { Link, BrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { LOGIN } from "../../apollo/queries/login";
@@ -18,7 +18,9 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link to="#">Your Website</Link> {new Date().getFullYear()}
+      <BrowserRouter>
+        <Link to="#">Your Website</Link> {new Date().getFullYear()}
+      </BrowserRouter>
       {"."}
     </Typography>
   );
@@ -65,7 +67,8 @@ export default function SignIn() {
     setState({ ...state, [name]: value });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       const response = await login({
         variables: {
@@ -120,10 +123,7 @@ export default function SignIn() {
             label="Se souvenir de moi"
           />
           <Button
-            onClick={async e => {
-              e.preventDefault();
-              handleSubmit();
-            }}
+            onClick={handleSubmit}
             type="submit"
             fullWidth
             variant="contained"
@@ -133,14 +133,18 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link to="#" className={classes.link}>
-                Mot de passe oublié ?
-              </Link>
+              <BrowserRouter>
+                <Link to="#" className={classes.link}>
+                  Mot de passe oublié ?
+                </Link>
+              </BrowserRouter>
             </Grid>
             <Grid item>
-              <Link to="/sign-up" className={classes.link}>
-                {"Si tu n'as pas encore de compte, crée-toi en un !"}
-              </Link>
+              <BrowserRouter>
+                <Link to="/sign-up" className={classes.link}>
+                  {"Si tu n'as pas encore de compte, crée-toi en un !"}
+                </Link>
+              </BrowserRouter>
             </Grid>
           </Grid>
         </form>

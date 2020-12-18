@@ -4,9 +4,11 @@ import App from './../../App';
 
 afterEach(cleanup)
 
-test('should take a snapshot', ():void => {
-  const { asFragment } = render(<App />)
-  expect(asFragment(<App />)).toMatchSnapshot()
-  // const linkElement = screen.getByText(/learn react/i);
-  // expect(linkElement).toBeInTheDocument();
+describe('App', () => {
+  it('should compare App snapshots', () => {
+    const { asFragment } = render(<App />)
+    const app = asFragment()
+    expect(app).not.toBe(null);
+    expect(app).toMatchSnapshot();
+  });
 });
