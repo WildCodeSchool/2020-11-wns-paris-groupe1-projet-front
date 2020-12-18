@@ -78,7 +78,7 @@ export default function SignIn() {
     }
   };
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
   }, [data]);
   return (
     <Container component="main" maxWidth="sm">
