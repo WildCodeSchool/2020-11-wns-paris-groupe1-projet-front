@@ -20,8 +20,12 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import HomeIcon from '@material-ui/icons/Home';
+import { Avatar } from '@material-ui/core';
+
+import { Link } from 'react-router-dom'
 
 const drawerWidth = 240;
 
@@ -33,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
     appBar: {
       transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
+        duration: theme.transitions.duration.leavingScreen,
       })
     },
     appBarShift: {
@@ -42,7 +46,10 @@ const useStyles = makeStyles((theme: Theme) =>
       transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen
-      })
+      }),
+    },
+      avatar: {
+      margin: theme.spacing(1),
     },
     menuButton: {
       marginRight: theme.spacing(2)
@@ -52,10 +59,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawer: {
       width: drawerWidth,
-      flexShrink: 0
+      flexShrink: 0,
     },
     drawerPaper: {
-      width: drawerWidth
+      width: drawerWidth,
+      backgroundColor: theme.palette.primary.main,
+      color: 'white',
     },
     drawerHeader: {
       display: "flex",
@@ -63,7 +72,8 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(0, 1),
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
-      justifyContent: "flex-end"
+      justifyContent: "flex-end",
+      // backgroundColor: "blue",
     },
     content: {
       flexGrow: 1,
@@ -80,7 +90,13 @@ const useStyles = makeStyles((theme: Theme) =>
         duration: theme.transitions.duration.enteringScreen
       }),
       marginLeft: 0
-    }
+    },
+    sideBarIcon: {
+      color: 'white',
+    },
+    linkSignIn: {
+      color: 'white',
+    },
   })
 );
 type Props = {
@@ -114,12 +130,16 @@ const SideBar: React.FC<Props> = ({ children }) => {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
+            className={clsx(classes.menuButton, classes.sideBarIcon, open && classes.hide)}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Persistent drawer
+          <Typography variant="h6">
+            <Link to ='/'>
+              <Avatar className={classes.avatar}>
+              </Avatar>
+            </Link>
+            <Link to='/sign-in' className={classes.linkSignIn}>Deconnexion</Link>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -133,7 +153,7 @@ const SideBar: React.FC<Props> = ({ children }) => {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleDrawerClose} className={classes.sideBarIcon}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
             ) : (
@@ -143,26 +163,38 @@ const SideBar: React.FC<Props> = ({ children }) => {
         </div>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+          <ListItem button>
+              <ListItemIcon className={classes.sideBarIcon}>
+                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={"Dashboard"} />
             </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            <ListItem button>
+              <ListItemIcon className={classes.sideBarIcon}>
+                <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={"Planning"} />
             </ListItem>
-          ))}
+            <ListItem button>
+              <ListItemIcon className={classes.sideBarIcon}>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Cours"} />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon className={classes.sideBarIcon}>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Ma promotion"} />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon className={classes.sideBarIcon}>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Exercices et corrections"} />
+            </ListItem>
         </List>
+        <Divider/>
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -170,7 +202,7 @@ const SideBar: React.FC<Props> = ({ children }) => {
         })}
       >
         <div className={classes.drawerHeader} />
-        {children}
+          {children}
       </main>
     </div>
   );

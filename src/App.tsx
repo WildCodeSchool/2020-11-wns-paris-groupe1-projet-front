@@ -14,6 +14,7 @@ import SignUp from "./pages/connection/SignUp";
 
 import LightTheme from "../src/themes/light-theme";
 import CourseForm from "./pages/course/CourseForm";
+import SideBar from "./components/layouts/SideBar";
 
 export default function App() {
   //localStorage.setItem("token", "azertyuiop");
@@ -27,7 +28,9 @@ export default function App() {
               <Route exact path="/sign-in" component={SignIn} />
               <Route exact path="/sign-up" component={SignUp} />
               <LoginContext.Provider value={isLoggedIn}>
-                <ProtectedRoute Component={<CourseForm />} />
+                <SideBar>
+                  <ProtectedRoute Component={<CourseForm />} />
+                </SideBar> 
               </LoginContext.Provider>
             </Switch>
           </BrowserRouter>
