@@ -22,10 +22,6 @@ export const overridings = {
       main: '#F9FBFC',
       dark: '#03DAC5',
     },
-    tercary: {
-      light: deepOrange[200],
-      main: '#E1755E',
-    },
     error: {
       main: '#B6342F'
     },
@@ -33,7 +29,6 @@ export const overridings = {
       light: '#A2CDB8',
       main: green[800],
     },
-    coucou: '#F9FBFC',
     menuTextHover: {
       main: '#03DAC5'
     },

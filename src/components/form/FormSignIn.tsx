@@ -13,14 +13,13 @@ import { Link, BrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { LOGIN } from "../../apollo/queries/login";
+import { useHistory } from 'react-router-dom'
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <BrowserRouter>
         <Link to="#">Your Website</Link> {new Date().getFullYear()}
-      </BrowserRouter>
       {"."}
     </Typography>
   );
@@ -55,6 +54,7 @@ const useStyles = makeStyles<any>(theme => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const history = useHistory();
 
   const [state, setState] = useState({
     email: "",
@@ -70,7 +70,7 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await login({
+      await login({
         variables: {
           email: state.email,
           password: state.password
@@ -81,15 +81,15 @@ export default function SignIn() {
     }
   };
   useEffect(() => {
-    // console.log(data);
-  }, [data]);
+    if (data?.login?.token){ 
+      localStorage.setItem('token', data.login.token)
+      history.push('/')
+    }
+  }, [data, history]);
   return (
     <Container component="main" maxWidth="sm">
       <CssBaseline />
       <div className={classes.paper}>
-        {/* <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar> */}
         <Typography component="h1" variant="h5">
           Connecte toi
         </Typography>
@@ -133,18 +133,14 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <BrowserRouter>
                 <Link to="#" className={classes.link}>
                   Mot de passe oublié ?
                 </Link>
-              </BrowserRouter>
             </Grid>
             <Grid item>
-              <BrowserRouter>
                 <Link to="/sign-up" className={classes.link}>
                   {"Si tu n'as pas encore de compte, crée-toi en un !"}
                 </Link>
-              </BrowserRouter>
             </Grid>
           </Grid>
         </form>

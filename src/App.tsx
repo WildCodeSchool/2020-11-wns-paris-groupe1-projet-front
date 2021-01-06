@@ -17,7 +17,6 @@ import CourseForm from "./pages/course/CourseForm";
 import SideBar from "./components/layouts/SideBar";
 
 export default function App() {
-  //localStorage.setItem("token", "azertyuiop");
   return (
     <ApolloProvider client={api}>
       <CssBaseline />

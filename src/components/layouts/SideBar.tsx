@@ -27,6 +27,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import SchoolIcon from "@material-ui/icons/School";
 
+import themeColor from '../../themes/light-theme';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -113,6 +115,13 @@ const useStyles = makeStyles((theme: Theme) =>
           color: "#03DAC5",
         },
       },
+    },
+    selected: {
+      backgroundColor: theme.palette.primary.light,
+        color: "#03DAC5",
+        "& $sideBarIcon": {
+          color: "#03DAC5",
+        },
     },
     sideBarLogout: {
       "&:hover": {
@@ -207,6 +216,7 @@ const SideBar: React.FC<Props> = ({ children }) => {
             <NavLink
               to="/"
               activeClassName="selected"
+              // activeStyle={{color: ''}}
               style={{ textDecoration: "none", color: "white" }}
             >
               <ListItem button className={classes.sideBarButton}>
@@ -218,7 +228,6 @@ const SideBar: React.FC<Props> = ({ children }) => {
             </NavLink>
             <NavLink
               to="/" // Replace the good root
-              // isActive={'planning'=== history.location.pathname}
               style={{ textDecoration: "none", color: "white" }}
             >
               <ListItem button className={classes.sideBarButton}>
@@ -230,7 +239,6 @@ const SideBar: React.FC<Props> = ({ children }) => {
             </NavLink>
             <NavLink
               to="/" // Replace the good root
-              // isActive={'lessons'=== history.location.pathname}
               style={{ textDecoration: "none", color: "white" }}
             >
               <ListItem button className={classes.sideBarButton}>
@@ -242,7 +250,6 @@ const SideBar: React.FC<Props> = ({ children }) => {
             </NavLink>
             <NavLink
               to="/" // Replace the good root
-              // isActive={'classe'=== history.location.pathname}
               style={{ textDecoration: "none", color: "white" }}
             >
               <ListItem button className={classes.sideBarButton}>
@@ -254,7 +261,6 @@ const SideBar: React.FC<Props> = ({ children }) => {
             </NavLink>
             <NavLink
               to="/" // Replace the good root
-              // isActive={'exercises'=== history.location.pathname}
               style={{ textDecoration: "none", color: "white" }}
             >
               <ListItem button className={classes.sideBarButton}>
