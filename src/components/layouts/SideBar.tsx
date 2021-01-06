@@ -20,9 +20,13 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import HomeIcon from '@material-ui/icons/Home';
+import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import SchoolIcon from '@material-ui/icons/School';
+import BuildIcon from '@material-ui/icons/Build';
+import CasinoIcon from '@material-ui/icons/Casino';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import { Avatar } from '@material-ui/core';
 
 import { Link } from 'react-router-dom'
@@ -73,7 +77,6 @@ const useStyles = makeStyles((theme: Theme) =>
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
       justifyContent: "flex-end",
-      // backgroundColor: "blue",
     },
     content: {
       flexGrow: 1,
@@ -139,7 +142,7 @@ const SideBar: React.FC<Props> = ({ children }) => {
               <Avatar className={classes.avatar}>
               </Avatar>
             </Link>
-            <Link to='/sign-in' className={classes.linkSignIn}>Deconnexion</Link>
+            <Link to='/sign-in' className={classes.linkSignIn}>Déconnexion</Link>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -171,27 +174,33 @@ const SideBar: React.FC<Props> = ({ children }) => {
             </ListItem>
             <ListItem button>
               <ListItemIcon className={classes.sideBarIcon}>
-                <HomeIcon />
+                <CalendarTodayIcon />
               </ListItemIcon>
               <ListItemText primary={"Planning"} />
             </ListItem>
             <ListItem button>
               <ListItemIcon className={classes.sideBarIcon}>
-                <HomeIcon />
+                <CollectionsBookmarkIcon />
               </ListItemIcon>
               <ListItemText primary={"Cours"} />
             </ListItem>
             <ListItem button>
               <ListItemIcon className={classes.sideBarIcon}>
-                <HomeIcon />
+                <SchoolIcon />
               </ListItemIcon>
               <ListItemText primary={"Ma promotion"} />
             </ListItem>
             <ListItem button>
               <ListItemIcon className={classes.sideBarIcon}>
-                <HomeIcon />
+                <CasinoIcon />
               </ListItemIcon>
               <ListItemText primary={"Exercices et corrections"} />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon className={classes.sideBarIcon}>
+                <BuildIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Outils"} />
             </ListItem>
         </List>
         <Divider/>
