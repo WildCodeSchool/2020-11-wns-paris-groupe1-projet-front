@@ -8,7 +8,10 @@ interface IProps {
 
 const Home: React.FC<IProps> = ({ routes }) => {
   return (
+    <>
       <Router routes={routes} />
+    hello CI
+    </>
   )
 }
 
