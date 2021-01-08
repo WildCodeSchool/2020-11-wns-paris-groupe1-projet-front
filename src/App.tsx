@@ -13,7 +13,8 @@ import Router from "./router/Router"
 import {routes} from "./router/routes"
 
 const App = () => {
-  //localStorage.setItem("token", "azertyuokiop");
+  //localStorage.setItem("token", "op");
+  
   return (
     <ApolloProvider client={api}>
       <CssBaseline />
