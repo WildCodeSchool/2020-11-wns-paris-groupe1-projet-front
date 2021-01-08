@@ -1,9 +1,18 @@
 import React from "react"
-import Container from "@material-ui/core/Container"
+import Router from "./../../router/Router"
+import {IRoute} from "./../../router/config"
 
-export default function Home(): JSX.Element {
+interface IProps {
+  routes: IRoute[];
+}
+
+const Home: React.FC<IProps> = ({ routes }) => {
   return (
-    <Container maxWidth="lg">
-    </Container>
+    <>
+      <Router routes={routes} />
+    hello CI
+    </>
   )
 }
+
+export default Home;

@@ -1,0 +1,8 @@
+services:
+  frontend:
+    build: .
+    ports:
+      # local:conteneur
+      - 3000:3000
+  backend:
+    image: charlottel91/ulysse-server
