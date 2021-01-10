@@ -17,6 +17,5 @@ export const SIGN_UP = gql`
     ...on Message {
       message
     }
-    }
   }
 `;
