@@ -205,7 +205,7 @@ export default function FormSignUp(): JSX.Element {
           </Button>
           <Grid container justify="center">
             <Grid item>
-              <Link to="/sign-in" className={classes.link}>
+              <Link to="/home/sign-in" className={classes.link}>
                 Déjà un compte? Connecte-toi
               </Link>
             </Grid>

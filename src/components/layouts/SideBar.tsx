@@ -27,8 +27,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import SchoolIcon from "@material-ui/icons/School";
 
-import themeColor from '../../themes/light-theme';
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>

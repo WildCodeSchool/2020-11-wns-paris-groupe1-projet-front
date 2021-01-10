@@ -138,7 +138,7 @@ export default function SignIn() {
                 </Link>
             </Grid>
             <Grid item>
-                <Link to="/sign-up" className={classes.link}>
+                <Link to="/home/sign-up" className={classes.link}>
                   {"Si tu n'as pas encore de compte, crée-toi en un !"}
                 </Link>
             </Grid>
