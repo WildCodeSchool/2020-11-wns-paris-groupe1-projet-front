@@ -183,7 +183,6 @@ const SideBar: React.FC<Props> = ({ children }) => {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              // onClick={handleProfileMenuOpen}
               color="inherit"
             >
               <AccountCircle />
