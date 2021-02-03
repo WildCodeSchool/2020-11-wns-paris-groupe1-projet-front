@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: 0,
     },
     sideBarIcon: {
-      color: "white",
+      color: "inherit",
     },
     linkSignIn: {
       color: "white",
@@ -104,6 +104,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     sideBarButton: {
       paddingLeft: 30,
+      padding: 10,
       justifyContent: "center",
       "&:hover": {
         backgroundColor: theme.palette.primary.light,
@@ -116,10 +117,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     selected: {
       backgroundColor: theme.palette.primary.light,
+      color: "#03DAC5",
+      "& $sideBarIcon": {
         color: "#03DAC5",
-        "& $sideBarIcon": {
-          color: "#03DAC5",
-        },
+      },
     },
     sideBarLogout: {
       "&:hover": {
@@ -214,7 +215,7 @@ const SideBar: React.FC<Props> = ({ children }) => {
             <NavLink
               to="/"
               activeClassName="selected"
-              // activeStyle={{color: ''}}
+              activeStyle={{ color: "#03DAC5" }}
               style={{ textDecoration: "none", color: "white" }}
             >
               <ListItem button className={classes.sideBarButton}>
