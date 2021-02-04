@@ -1,55 +1,56 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from 'react';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import { Link } from 'react-router-dom';
 
-import { SIGN_UP } from "./../../apollo/mutations/sign-up";
-import { useMutation } from "@apollo/client";
+import { useMutation } from '@apollo/client';
+import { SIGN_UP } from '../../apollo/mutations/sign-up';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link to="#">Your Website</Link> {new Date().getFullYear()}
-      {"."}
+      {'Copyright © '}
+      <Link to="/">Your Website</Link>
+      {' '}
+      {new Date().getFullYear()}
+      .
     </Typography>
   );
 }
 
-const useStyles = makeStyles<any>(theme => ({
+const useStyles = makeStyles<any>((theme) => ({
   paper: {
     padding: 50,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "#fff"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
   //   avatar: {
   //     margin: theme.spacing(1),
   //     backgroundColor: theme.palette.secondary.main,
   //   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
   },
   sm: {
-    width: "70%"
+    width: '70%',
   },
   submit: {
     margin: theme.spacing(7, 0, 5),
-    backgroundColor: "#E1755E",
-    color: "#fff"
+    backgroundColor: '#E1755E',
+    color: '#fff',
   },
   link: {
-    color: "#4E8591"
-  }
+    color: '#4E8591',
+  },
 }));
 
 interface ISignUpState {
@@ -66,14 +67,14 @@ export default function FormSignUp(): JSX.Element {
 
   const [signUp] = useMutation(SIGN_UP);
 
-  //const [firstName, setFirstName] = useState("");
+  // const [firstName, setFirstName] = useState("");
   const [state, setState] = useState<ISignUpState>({
-    firstName: "",
-    lastName: "",
-    birthday: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+    firstName: '',
+    lastName: '',
+    birthday: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const handleSubmit = async () => {
@@ -85,9 +86,9 @@ export default function FormSignUp(): JSX.Element {
             lastname: state.lastName,
             birthday: state.birthday,
             email: state.email,
-            password: state.password
-          }
-        }
+            password: state.password,
+          },
+        },
       });
       console.log(response);
     } catch (e) {
@@ -192,7 +193,7 @@ export default function FormSignUp(): JSX.Element {
             </Grid>
           </Grid>
           <Button
-            onClick={async e => {
+            onClick={async (e) => {
               e.preventDefault();
               handleSubmit();
             }}

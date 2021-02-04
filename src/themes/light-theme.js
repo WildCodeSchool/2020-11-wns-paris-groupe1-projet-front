@@ -1,6 +1,5 @@
-
-import { createMuiTheme } from "@material-ui/core/styles";
-import { blueGrey, deepOrange, green } from "@material-ui/core/colors";
+import { createMuiTheme } from '@material-ui/core/styles';
+import { blueGrey, deepOrange, green } from '@material-ui/core/colors';
 
 export const overridings = {
   name: 'Light Theme',
@@ -9,7 +8,7 @@ export const overridings = {
     fontweight: {
       normal: 'normal',
       fontWeightBold: 'bold',
-    }
+    },
   },
   palette: {
     primary: {
@@ -23,21 +22,21 @@ export const overridings = {
       dark: '#03DAC5',
     },
     error: {
-      main: '#B6342F'
+      main: '#B6342F',
     },
     success: {
       light: '#A2CDB8',
       main: green[800],
     },
     menuTextHover: {
-      main: '#03DAC5'
+      main: '#03DAC5',
     },
   },
   bidouille: {
     hover: {
-      main: 'red'
-    }
-  }
+      main: 'red',
+    },
+  },
 };
 
 export default createMuiTheme(overridings);

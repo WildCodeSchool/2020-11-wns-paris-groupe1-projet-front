@@ -1,10 +1,10 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 
-export default function Promotion(): JSX.Element {
+export default function Course(): JSX.Element {
   return (
     <Container maxWidth="lg">
-      promotion
+      Planning
     </Container>
   );
 }

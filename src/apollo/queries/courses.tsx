@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 const COURSES = gql`
   {
@@ -12,4 +12,4 @@ const COURSES = gql`
   }
 `;
 
-export default COURSES
+export default COURSES;

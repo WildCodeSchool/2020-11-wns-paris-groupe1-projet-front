@@ -4,7 +4,6 @@ import { Meta } from '@storybook/react/types-6-0';
 import Button from '@material-ui/core/Button';
 import { action } from '@storybook/addon-actions';
 
-
 export default {
   title: 'Material Button',
 } as Meta;

@@ -1,55 +1,57 @@
-import React, { useEffect } from "react";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import { Link, BrowserRouter } from "react-router-dom";
-import { useState } from "react";
-import { useLazyQuery } from "@apollo/client";
-import { LOGIN } from "../../apollo/queries/login";
-import { useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import { Link, useHistory } from 'react-router-dom';
+
+import { useLazyQuery } from '@apollo/client';
+
+import { LOGIN } from '../../apollo/queries/login';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-        <Link to="#">Your Website</Link> {new Date().getFullYear()}
-      {"."}
+      {'Copyright © '}
+      <Link to="/">Your Website</Link>
+      {' '}
+      {new Date().getFullYear()}
+      .
     </Typography>
   );
 }
 
-const useStyles = makeStyles<any>(theme => ({
+const useStyles = makeStyles<any>((theme) => ({
   paper: {
     // marginTop: theme.spacing(20),
     padding: 50,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "#fff"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
   //   avatar: {
   //     margin: theme.spacing(1),
   //     backgroundColor: theme.palette.secondary.main,
   //   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(7, 0, 5),
-    backgroundColor: "#E1755E",
-    color: "#fff"
+    backgroundColor: '#E1755E',
+    color: '#fff',
   },
   link: {
-    color: "#4E8591"
-  }
+    color: '#4E8591',
+  },
 }));
 
 export default function SignIn() {
@@ -57,11 +59,11 @@ export default function SignIn() {
   const history = useHistory();
 
   const [state, setState] = useState({
-    email: "",
-    password: ""
+    email: '',
+    password: '',
   });
 
-  const [login, { data, loading, error }] = useLazyQuery(LOGIN);
+  const [login, { data }] = useLazyQuery(LOGIN);
 
   const handleInputChange = ({ target: { name, value } }) => {
     setState({ ...state, [name]: value });
@@ -73,17 +75,17 @@ export default function SignIn() {
       await login({
         variables: {
           email: state.email,
-          password: state.password
-        }
+          password: state.password,
+        },
       });
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     }
   };
   useEffect(() => {
-    if (data?.login?.token){ 
-      localStorage.setItem('token', data.login.token)
-      history.push('/')
+    if (data?.login?.token) {
+      localStorage.setItem('token', data.login.token);
+      history.push('/');
     }
   }, [data, history]);
   return (
@@ -133,14 +135,14 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-                <Link to="#" className={classes.link}>
-                  Mot de passe oublié ?
-                </Link>
+              <Link to="/" className={classes.link}>
+                Mot de passe oublié ?
+              </Link>
             </Grid>
             <Grid item>
-                <Link to="/home/sign-up" className={classes.link}>
-                  {"Si tu n'as pas encore de compte, crée-toi en un !"}
-                </Link>
+              <Link to="/home/sign-up" className={classes.link}>
+                Si tu n&apos;as pas encore de compte, crée-toi en un !
+              </Link>
             </Grid>
           </Grid>
         </form>

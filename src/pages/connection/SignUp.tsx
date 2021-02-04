@@ -1,19 +1,17 @@
 import React from 'react';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import FormSignUp from '../../components/form/FormSignUp';
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      height: '100vh',
-      backgroundColor: theme.palette.primary.main,
-      display: 'flex',
-    },
-    form: {
-      margin: 'auto'
-    }
-  })
-);
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  container: {
+    height: '100vh',
+    backgroundColor: theme.palette.primary.main,
+    display: 'flex',
+  },
+  form: {
+    margin: 'auto',
+  },
+}));
 
 const SignUp = () => {
   const classes = useStyles();
@@ -23,7 +21,7 @@ const SignUp = () => {
         <FormSignUp />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

@@ -1,3 +1,3 @@
-import {subRHome} from './subRHome'
+import { subRHome } from './subRHome';
 
-export {subRHome}
+export { subRHome };
