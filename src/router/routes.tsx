@@ -6,8 +6,11 @@ import { IRoute } from './config';
 export const routes: IRoute[] = [
   {
     path: '/',
-    exact: true,
     redirect: '/home',
+    exact: false,
+    private: false,
+    component: lazy(() => import('../pages/home')),
+    routes: subRHome,
     fallback: <div> Loading... </div>,
   },
   {
@@ -23,14 +26,6 @@ export const routes: IRoute[] = [
     private: false,
     component: lazy(() => import('../pages/connection/SignUp')),
     fallback: <div> Loading... </div>,
-  },
-  {
-    path: '/home',
-    component: lazy(() => import('./../pages/home')),
-    exact: false,
-    private: false,
-    fallback: <div> Loading... </div>,
-    routes: subRHome,
   },
   // {
   // path: '/protected',
