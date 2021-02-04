@@ -121,11 +121,8 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-type Props = {
-  children: React.ReactChild;
-};
 // eslint-disable-next-line react/prop-types
-const SideBar: React.FC<Props> = ({ children }) => {
+const SideBar: React.FC = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -203,7 +200,7 @@ const SideBar: React.FC<Props> = ({ children }) => {
         <List style={{ flexGrow: 1 }}>
           <div style={{ paddingTop: 30 }}>
             <NavLink
-              to="/home"
+              to="/home/dashboard"
               activeClassName="selected"
               activeStyle={{ color: '#03DAC5' }}
               style={{ textDecoration: 'none', color: 'white' }}
@@ -293,7 +290,6 @@ const SideBar: React.FC<Props> = ({ children }) => {
         })}
       >
         <div className={classes.drawerHeader} />
-        {children}
       </main>
     </div>
   );
