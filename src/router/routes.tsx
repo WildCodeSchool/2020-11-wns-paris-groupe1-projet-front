@@ -1,29 +1,28 @@
+import React, { lazy } from "react";
+import { subRHome } from "./subRoutes";
 
-import React, {lazy} from 'react';
-import {subRHome} from "./subRoutes"
-
-import {IRoute} from "./config"
+import { IRoute } from "./config";
 
 export const routes: IRoute[] = [
   {
-    path: '/',
+    path: "/",
     exact: true,
-    redirect: '/home',
-    fallback: <div> Loading... </div>
+    redirect: "/home",
+    fallback: <div> Loading... </div>,
   },
   {
-    path: '/home',
-    component: lazy(() => import('./../pages/home')),
+    path: "/home",
+    component: lazy(() => import("./../pages/home")),
     exact: false,
     private: false,
     fallback: <div> Loading... </div>,
-    routes: subRHome
+    routes: subRHome,
   },
-  // {
-    // path: '/protected',
-    // component: lazy(() => import('../components/Protected')),
-    // exact: false,
-    // private: true,
-    // fallback: <div> Loading... </div>
-  // }
+  {
+    path: "/planning",
+    component: lazy(() => import("../pages/planning")),
+    exact: false,
+    private: true,
+    fallback: <div> Loading... </div>,
+  },
 ];
