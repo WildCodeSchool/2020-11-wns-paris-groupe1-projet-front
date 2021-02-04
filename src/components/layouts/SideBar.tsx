@@ -124,7 +124,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 // eslint-disable-next-line react/prop-types
 const SideBar: React.FC = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
