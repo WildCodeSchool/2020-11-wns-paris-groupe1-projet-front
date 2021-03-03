@@ -5,7 +5,7 @@ import { IRoute } from './config';
 
 export const routes: IRoute[] = [
   {
-    path: '/home',
+    path: '/',
     exact: false,
     private: false,
     component: lazy(() => import('../pages/home')),
