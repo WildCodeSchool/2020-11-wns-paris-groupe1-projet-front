@@ -7,6 +7,12 @@ export const routes: IRoute[] = [
   {
     path: '/',
     exact: true,
+    redirect: '/home',
+    fallback: <div> Loading... </div>,
+  },
+  {
+    path: '/home',
+    exact: false,
     private: false,
     component: lazy(() => import('../pages/home')),
     routes: subRHome,
