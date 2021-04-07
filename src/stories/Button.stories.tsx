@@ -1,8 +1,9 @@
 import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
+// eslint-disable-next-line import/no-unresolved
 import { Meta } from '@storybook/react/types-6-0';
-import Button from '@material-ui/core/Button';
 import { action } from '@storybook/addon-actions';
+import Button from '@material-ui/core/Button';
 
 export default {
   title: 'Material Button',

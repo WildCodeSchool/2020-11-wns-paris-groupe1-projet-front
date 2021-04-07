@@ -1,15 +1,48 @@
 import React, { lazy } from 'react';
-import { subRHome } from './subRoutes';
 
 import { IRoute } from './config';
 
 export const routes: IRoute[] = [
   {
-    path: '/home',
-    exact: false,
+    path: '/',
+    exact: true,
     private: false,
-    component: lazy(() => import('../pages/home')),
-    routes: subRHome,
+    redirect: '/dashboard',
+    fallback: <div> Loading... </div>,
+  },
+  {
+    path: '/dashboard',
+    exact: true,
+    private: false,
+    component: lazy(() => import('../pages/dashboard')),
+    fallback: <div> Loading... </div>,
+  },
+  {
+    path: '/planning',
+    exact: true,
+    private: false,
+    component: lazy(() => import('../pages/planning')),
+    fallback: <div> Loading... </div>,
+  },
+  {
+    path: '/courses',
+    exact: true,
+    private: false,
+    component: lazy(() => import('../pages/courses')),
+    fallback: <div> Loading... </div>,
+  },
+  {
+    path: '/promotion',
+    exact: true,
+    private: false,
+    component: lazy(() => import('../pages/promotion')),
+    fallback: <div> Loading... </div>,
+  },
+  {
+    path: '/exercises',
+    exact: true,
+    private: false,
+    component: lazy(() => import('../pages/exercises')),
     fallback: <div> Loading... </div>,
   },
   {
