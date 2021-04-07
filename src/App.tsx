@@ -10,12 +10,14 @@ import LightTheme from './themes/light-theme';
 
 import Router from './router/Router';
 import { routes } from './router/routes';
+import SideBar from './components/layouts/SideBar';
 
 const App = () => (
   <ApolloProvider client={api}>
     <CssBaseline />
     <StyledThemeProvider theme={LightTheme}>
       <MuiThemeProvider theme={LightTheme}>
+        <SideBar />
         <Router routes={routes} />
       </MuiThemeProvider>
     </StyledThemeProvider>

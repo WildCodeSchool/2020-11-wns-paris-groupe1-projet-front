@@ -67,7 +67,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -200,7 +199,7 @@ const SideBar: React.FC = () => {
         <List style={{ flexGrow: 1 }}>
           <div style={{ paddingTop: 30 }}>
             <NavLink
-              to="/home/dashboard"
+              to="/dashboard"
               activeClassName="selected"
               activeStyle={{ color: '#03DAC5' }}
               style={{ textDecoration: 'none', color: 'white' }}
@@ -213,7 +212,7 @@ const SideBar: React.FC = () => {
               </ListItem>
             </NavLink>
             <NavLink
-              to="/home/planning" // Replace the good root
+              to="/planning" // Replace the good root
               style={{ textDecoration: 'none', color: 'white' }}
             >
               <ListItem button className={classes.sideBarButton}>
@@ -224,7 +223,7 @@ const SideBar: React.FC = () => {
               </ListItem>
             </NavLink>
             <NavLink
-              to="/home/courses" // Replace the good root
+              to="/courses" // Replace the good root
               style={{ textDecoration: 'none', color: 'white' }}
             >
               <ListItem button className={classes.sideBarButton}>
@@ -247,7 +246,7 @@ const SideBar: React.FC = () => {
               </ListItem>
             </NavLink>
             <NavLink
-              to="/home/exercises" // Replace the good root
+              to="/exercises" // Replace the good root
               style={{ textDecoration: 'none', color: 'white' }}
             >
               <ListItem button className={classes.sideBarButton}>
@@ -258,7 +257,7 @@ const SideBar: React.FC = () => {
               </ListItem>
             </NavLink>
             <NavLink
-              to="/home/tools" // Replace the good root
+              to="/tools" // Replace the good root
               // isActive={'tools'=== history.location.pathname}
               style={{ textDecoration: 'none', color: 'white' }}
             >
