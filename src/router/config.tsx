@@ -13,6 +13,4 @@ export interface IRoute {
   routes?: IRoute[];
   // Redirect path
   redirect?: string;
-  // If router is private, this is going to be true
-  private?: boolean;
 }
