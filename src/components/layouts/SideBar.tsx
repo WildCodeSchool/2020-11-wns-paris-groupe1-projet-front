@@ -200,10 +200,16 @@ const SideBar: React.FC = () => {
         <List style={{ flexGrow: 1 }}>
           <div style={{ paddingTop: 30 }}>
             <NavLink
+<<<<<<< HEAD
               to="/home/dashboard"
               activeClassName="selected"
               activeStyle={{ color: '#03DAC5' }}
               style={{ textDecoration: 'none', color: 'white' }}
+=======
+              to="/home"
+              activeStyle={{ color: "#03DAC5" }}
+              style={{ textDecoration: "none", color: "white" }}
+>>>>>>> bd75e48c5d2d422f08d4646f5eeb7834fd964257
             >
               <ListItem button className={classes.sideBarButton}>
                 <ListItemIcon className={classes.sideBarIcon}>
@@ -213,8 +219,14 @@ const SideBar: React.FC = () => {
               </ListItem>
             </NavLink>
             <NavLink
+<<<<<<< HEAD
               to="/home/planning" // Replace the good root
               style={{ textDecoration: 'none', color: 'white' }}
+=======
+              to="/planning"
+              activeStyle={{ color: "#03DAC5" }}
+              style={{ textDecoration: "none", color: "white" }}
+>>>>>>> bd75e48c5d2d422f08d4646f5eeb7834fd964257
             >
               <ListItem button className={classes.sideBarButton}>
                 <ListItemIcon className={classes.sideBarIcon}>
@@ -224,8 +236,14 @@ const SideBar: React.FC = () => {
               </ListItem>
             </NavLink>
             <NavLink
+<<<<<<< HEAD
               to="/home/courses" // Replace the good root
               style={{ textDecoration: 'none', color: 'white' }}
+=======
+              to="/" // Replace the good root
+              activeStyle={{ color: "#03DAC5" }}
+              style={{ textDecoration: "none", color: "white" }}
+>>>>>>> bd75e48c5d2d422f08d4646f5eeb7834fd964257
             >
               <ListItem button className={classes.sideBarButton}>
                 <ListItemIcon className={classes.sideBarIcon}>
@@ -236,7 +254,8 @@ const SideBar: React.FC = () => {
             </NavLink>
             <NavLink
               to="/home/promotion" // Replace the good root
-              style={{ textDecoration: 'none', color: 'white' }}
+              activeStyle={{ color: "#03DAC5" }}
+              style={{ textDecoration: "none", color: "white" }}
             >
               <ListItem button className={classes.sideBarButton}>
                 <ListItemIcon className={classes.sideBarIcon}>

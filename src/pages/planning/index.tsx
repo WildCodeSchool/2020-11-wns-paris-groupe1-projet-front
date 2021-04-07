@@ -1,11 +1,11 @@
-import React from 'react';
-import Container from '@material-ui/core/Container';
-import Calendar from '../../components/calendar/calendar';
+import React from "react";
+import Calendar from "../../components/calendar/Calendar";
 
-export default function Course(): JSX.Element {
+export default function Planning(): JSX.Element {
   return (
-    <Container maxWidth="lg">
+    <>
+      <p>Ici calendrier</p>
       <Calendar />
-    </Container>
+    </>
   );
 }
