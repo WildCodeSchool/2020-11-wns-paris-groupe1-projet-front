@@ -28,7 +28,7 @@ export default function Calendar(): JSX.Element {
   };
 
   const handleDateSelect = (selectInfo: DateSelectArg) => {
-    const title = window.prompt('Entrer un titre pour le nouvel évènement');
+    const title = window.prompt('Entrer un titre pour ce nouvel évènement');
     const calendarApi = selectInfo.view.calendar;
 
     calendarApi.unselect(); // clear date selection
@@ -45,7 +45,7 @@ export default function Calendar(): JSX.Element {
   };
 
   const handleEventClick = (clickInfo: EventClickArg) => {
-    if (window.confirm(`Êtes-vous sûr de vouloir supprimer l'évènement ?'${clickInfo.event.title}'`)) {
+    if (window.confirm(`Êtes-vous sûr de vouloir supprimer '${clickInfo.event.title}' ?`)) {
       clickInfo.event.remove();
     }
   };
