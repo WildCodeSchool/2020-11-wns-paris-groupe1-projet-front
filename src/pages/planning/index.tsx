@@ -4,7 +4,7 @@ import Calendar from '../../components/calendar/Calendar';
 
 export default function Planning(): JSX.Element {
   return (
-    <Container maxWidth="lg">
+    <Container style={{ marginTop: '20px' }}>
       <Calendar />
     </Container>
   );
