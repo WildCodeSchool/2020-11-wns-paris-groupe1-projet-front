@@ -16,11 +16,8 @@
     "@testing-library/react": "^11.1.2",
     "@testing-library/user-event": "^12.2.2",
     "chokidar": "^3.4.3",
-<<<<<<< HEAD
     "clsx": "^1.1.1",
-=======
     "date-fns": "^2.16.1",
->>>>>>> bd75e48c5d2d422f08d4646f5eeb7834fd964257
     "graphql": "^15.4.0",
     "moment": "^2.29.1",
     "react": "^17.0.1",
