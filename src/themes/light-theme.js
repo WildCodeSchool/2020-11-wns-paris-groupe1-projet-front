@@ -1,14 +1,15 @@
-
-import { createMuiTheme } from "@material-ui/core/styles";
-import purple from "@material-ui/core/colors/purple";
-import { blueGrey, deepOrange, green } from "@material-ui/core/colors";
-
-const primaryPurple = purple[500];
-const accentPurple = purple.A200;
-const darkPurple = purple[900];
+import { createMuiTheme } from '@material-ui/core/styles';
+import { blueGrey, deepOrange, green } from '@material-ui/core/colors';
 
 export const overridings = {
   name: 'Light Theme',
+  typography: {
+    fontFamily: "'IBM Plex Sans', sans-serif",
+    fontweight: {
+      normal: 'normal',
+      fontWeightBold: 'bold',
+    },
+  },
   palette: {
     primary: {
       light: blueGrey[500],
@@ -17,19 +18,25 @@ export const overridings = {
     },
     secondary: {
       light: deepOrange[200],
-      main: '#E1755E',
+      main: '#F9FBFC',
+      dark: '#03DAC5',
     },
     error: {
-      main: '#B6342F'
+      main: '#B6342F',
     },
     success: {
       light: '#A2CDB8',
       main: green[800],
     },
-    text: {
-      main: '#F9FBFC',
-    }
-  }
+    menuTextHover: {
+      main: '#03DAC5',
+    },
+  },
+  bidouille: {
+    hover: {
+      main: 'red',
+    },
+  },
 };
 
 export default createMuiTheme(overridings);

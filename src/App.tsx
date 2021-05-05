@@ -1,29 +1,27 @@
-import React from "react";
-import api from "./apollo";
-import { ApolloProvider } from "@apollo/client";
+import React from 'react';
+import { ApolloProvider } from '@apollo/client';
 
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import api from './apollo';
 
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import LightTheme from './themes/light-theme';
 
-import LightTheme from "../src/themes/light-theme";
+import Router from './router/Router';
+import { routes } from './router/routes';
+import SideBar from './components/layouts/SideBar';
 
-import Router from "./router/Router"
-import {routes} from "./router/routes"
+const App = () => (
+  <ApolloProvider client={api}>
+    <CssBaseline />
+    <StyledThemeProvider theme={LightTheme}>
+      <MuiThemeProvider theme={LightTheme}>
+        <SideBar />
+        <Router routes={routes} />
+      </MuiThemeProvider>
+    </StyledThemeProvider>
+  </ApolloProvider>
+);
 
-const App = () => {
-  //localStorage.setItem("token", "azertyuiop");
-  return (
-    <ApolloProvider client={api}>
-      <CssBaseline />
-      <StyledThemeProvider theme={LightTheme}>
-        <MuiThemeProvider theme={LightTheme}>
-          <Router routes={routes} />
-        </MuiThemeProvider>
-      </StyledThemeProvider>
-    </ApolloProvider>
-  );
-}
-
-export default App
+export default App;

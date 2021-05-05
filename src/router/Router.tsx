@@ -7,10 +7,11 @@ interface IProps {
   routes: IRoute[];
 }
 
-const Router: React.FC<IProps> = ({ routes }) => {
-  return <Switch>{routes && routes.map((route: IRoute) => {
-    return <RouteWithSubRoutes key={route.path} {...route} />
-  })}</Switch>;
-};
+// eslint-disable-next-line react/prop-types
+const Router: React.FC<IProps> = ({ routes }) => (
+  <Switch>
+    {routes && routes.map((route: IRoute) => <RouteWithSubRoutes key={route.path} {...route} />)}
+  </Switch>
+);
 
 export default Router;

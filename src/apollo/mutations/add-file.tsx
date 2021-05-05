@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client"
+import { gql } from '@apollo/client';
 
 const ADD_FILE = gql`
   mutation AddFile($file: InputFile) {
@@ -10,6 +10,6 @@ const ADD_FILE = gql`
       datetime
     }
   }
-`
+`;
 
-export default ADD_FILE
+export default ADD_FILE;

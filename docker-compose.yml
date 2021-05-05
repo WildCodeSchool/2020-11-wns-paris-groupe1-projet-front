@@ -1,0 +1,10 @@
+services:
+  frontend:
+    build: .
+    ports:
+      # local:conteneur
+      - 3000:3000
+  backend:
+    build: ./../2020-11-wns-paris-groupe1-projet-back
+    ports:
+      - 4000:4000

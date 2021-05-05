@@ -1,14 +1,27 @@
-import React from "react"
+import React from 'react';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import FormSignIn from '../../components/form/FormSignIn';
 
-const SignIn = () => {
-  return (
-    <div className='container'>
-    <div className='form'>
-      <FormSignIn />
-    </div>
-  </div>
-  )
-}
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  container: {
+    height: '100vh',
+    backgroundColor: theme.palette.primary.main,
+    display: 'flex',
+  },
+  form: {
+    margin: 'auto',
+  },
+}));
 
-export default SignIn
+const SignIn = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.container}>
+      <div className={classes.form}>
+        <FormSignIn />
+      </div>
+    </div>
+  );
+};
+
+export default SignIn;
