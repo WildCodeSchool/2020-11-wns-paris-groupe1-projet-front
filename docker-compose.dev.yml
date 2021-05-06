@@ -1,20 +1,20 @@
 version: '3'
 services:
-  api:
-    command: npm run start:watch
+  backend:
+    command: npm run watch
     stdin_open: true
     volumes:
-      - ./src:/app/src
+      - ./../2020-11-wns-paris-groupe1-projet-back
     ports:
       - ${API_PORT}:4000
     environment:
       - NODE_ENV=development
       - TYPEORM_LOGGING=true
-  web-client:
+  frontend:
     command: npm run start
     stdin_open: true
     volumes:
-      - ./web-client:/app
+      - ./app
     ports:
       - ${WEB_CLIENT_PORT}:3000
     environment:

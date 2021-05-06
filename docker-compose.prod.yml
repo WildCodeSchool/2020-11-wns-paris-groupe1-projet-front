@@ -4,7 +4,7 @@ services:
   db:
     restart: always
 
-  api:
+  backend:
     command: sh -c "npm run build && npm run start"
     expose:
       - 4000
@@ -12,7 +12,7 @@ services:
     environment:
       - NODE_ENV=production
 
-  web-client:
+  frontend:
     command: sh -c "npm run build"
     volumes:
       - web-client-build:/app/build
