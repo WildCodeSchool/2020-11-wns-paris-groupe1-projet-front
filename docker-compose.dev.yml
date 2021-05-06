@@ -3,20 +3,10 @@ services:
   backend:
     command: npm run watch
     stdin_open: true
-    volumes:
-      - ./../2020-11-wns-paris-groupe1-projet-back
     ports:
-      - 4000
-    environment:
-      - NODE_ENV=development
-      - TYPEORM_LOGGING=true
+      - 4000:4000
   frontend:
     command: npm run start
     stdin_open: true
-    volumes:
-      - ./app
     ports:
       - "3000:3000"
-    environment:
-      - NODE_ENV=development
-      - REACT_APP_API_BASE_URL=http://localhost:4000
