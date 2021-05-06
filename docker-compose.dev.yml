@@ -6,6 +6,5 @@ services:
       - 4000:4000
   frontend:
     command: npm run start
-    stdin_open: true
     ports:
       - 3000:3000
