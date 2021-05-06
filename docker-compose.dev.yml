@@ -6,7 +6,7 @@ services:
     volumes:
       - ./../2020-11-wns-paris-groupe1-projet-back
     ports:
-      - 4000:4OOO
+      - "4000:4OOO"
     environment:
       - NODE_ENV=development
       - TYPEORM_LOGGING=true
@@ -16,7 +16,7 @@ services:
     volumes:
       - ./app
     ports:
-      - 3000:3000
+      - "3000:3000"
     environment:
       - NODE_ENV=development
       - REACT_APP_API_BASE_URL=http://localhost:4000
