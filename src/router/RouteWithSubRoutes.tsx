@@ -13,14 +13,6 @@ const RouteWithSubRoutes = (route: IRoute) => {
           path={path}
           render={(props) => (route.redirect ? (
             <Redirect to={route.redirect} />
-          ) : route.private ? (
-            isLoggedIn ? (
-              route.component && (
-              <route.component {...props} routes={route.routes} />
-              )
-            ) : (
-              <Redirect to="/sign-in" />
-            )
           ) : (
             route.component && (
             <route.component {...props} routes={route.routes} />
